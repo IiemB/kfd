@@ -1,89 +1,284 @@
-/*
- * Copyright (c) 2023 Félix Poulin-Bélanger. All rights reserved.
- */
-
 import SwiftUI
-private let dynamicPath = "/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist"
 
 struct ContentView: View {
-    init() {
-    }
-    
     @State private var kfd: UInt64 = 0
-
-    private var puaf_pages_options = [16, 32, 64, 128, 256, 512, 1024, 2048]
-    @State private var puaf_pages_index = 7
-    @State private var puaf_pages = 0
-
-    private var puaf_method_options = ["physpuppet", "smith"]
-    @State private var puaf_method = 1
-
-    private var kread_method_options = ["kqueue_workloop_ctl", "sem_open"]
-    @State private var kread_method = 1
-
-    private var kwrite_method_options = ["dup", "sem_open"]
-    @State private var kwrite_method = 1
-
+    
+    @State private var puafPages = 2048
+    @State private var puafMethod = 1
+    @State private var kreadMethod = 1
+    @State private var kwriteMethod = 1
+    //tweak vars
+    @State private var isDockHidden = false
+    @State private var enableCCTweaks = false
+    @State private var enableLSTweaks = false
+    @State private var enableCustomFont = false
+    @State private var enableresset = false
+    @State private var hidehomebar = false
+    
+    var puafPagesOptions = [16, 32, 64, 128, 256, 512, 1024, 2048]
+    var puafMethodOptions = ["physpuppet", "smith"]
+    var kreadMethodOptions = ["kqueue_workloop_ctl", "sem_open"]
+    var kwriteMethodOptions = ["dup", "sem_open"]
+    
+    @State private var isSettingsPopoverPresented = false // Track the visibility of the settings popup
+    
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                    Picker(selection: $puaf_pages_index, label: Text("puaf pages:")) {
-                        ForEach(0 ..< puaf_pages_options.count, id: \.self) {
-                            Text(String(self.puaf_pages_options[$0]))
+            List {
+                VStack(spacing: 20) {
+                    Button(action: {
+                    }) {
+                        HStack {
+                            Image(systemName: "play.fill")
+                            Text("Open exploit")
                         }
-                    }.disabled(kfd != 0)
-                }
-                Section {
-                    Picker(selection: $puaf_method, label: Text("puaf method:")) {
-                        ForEach(0 ..< puaf_method_options.count, id: \.self) {
-                            Text(self.puaf_method_options[$0])
+                    }
+                    .disabled(kfd != 0)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(kfd != 0 ? Color.gray.opacity(0.5) : Color.blue)
+                    .cornerRadius(8)
+                    .foregroundColor(.white)
+                    
+                    Button(action: {
+                      //  do_kclose()
+                      //  kfd = 0
+                    }) {
+                        HStack {
+                            Image(systemName: "stop.fill")
+                            Text("Close exploit")
                         }
-                    }.disabled(kfd != 0)
-                }
-                Section {
-                    Picker(selection: $kread_method, label: Text("kread method:")) {
-                        ForEach(0 ..< kread_method_options.count, id: \.self) {
-                            Text(self.kread_method_options[$0])
+                    }
+                    .disabled(kfd == 0)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(kfd == 0 ? Color.gray.opacity(0.5) : Color.blue)
+                    .cornerRadius(8)
+                    .foregroundColor(.white)
+                    
+                    Button(action: {
+                          //kfd = 0
+                       // do_respring()
+                    }) {
+                        HStack {
+                            Image(systemName: "arrow.clockwise.circle.fill")
+                            Text("Respring")
                         }
-                    }.disabled(kfd != 0)
-                }
-                Section {
-                    Picker(selection: $kwrite_method, label: Text("kwrite method:")) {
-                        ForEach(0 ..< kwrite_method_options.count, id: \.self) {
-                            Text(self.kwrite_method_options[$0])
-                        }
-                    }.disabled(kfd != 0)
-                }
-                Section {
-                    HStack {
-                        Button("kopen") {
-                            puaf_pages = puaf_pages_options[puaf_pages_index]
-                            kfd = do_kopen(UInt64(puaf_pages), UInt64(puaf_method), UInt64(kread_method), UInt64(kwrite_method))
-                            do_fun()
-                        }.disabled(kfd != 0).frame(minWidth: 0, maxWidth: .infinity)
-                        
-                        Button("enable dynamic cow") {
-                            plistChange(plistPath: dynamicPath, key: "ArtworkDeviceSubType", value: 2556) //hardcode to fix bug
-                        }.frame(minWidth: 0, maxWidth: .infinity)
-
-                        Button("kclose") {
-                            do_kclose()
-                            puaf_pages = 0
-                            kfd = 0
-                        }.disabled(kfd == 0).frame(minWidth: 0, maxWidth: .infinity)
-                    }.buttonStyle(.bordered)
-                }.listRowBackground(Color.clear)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                    .cornerRadius(8)
+                    .foregroundColor(.white)
+                
+            }
                 if kfd != 0 {
-                    Section {
-                        VStack {
-                            Text("Success!").foregroundColor(.green)
-                            Text("Look at output in Xcode")
-                        }.frame(minWidth: 0, maxWidth: .infinity)
-                    }.listRowBackground(Color.clear)
+                    Section(header: Text("Status")) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Success!")
+                                .font(.headline)
+                                .foregroundColor(.green)
+                            Text("View output in Xcode")
+                                .foregroundColor(.gray)
+                        }
+                    }
                 }
-            }.navigationBarTitle(Text("kfd"), displayMode: .inline)
+                
+                Section(header: Text("Tweaks")) {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Toggle(isOn: $isDockHidden) {
+                            HStack(spacing: 20) {
+                                Image(systemName: isDockHidden ? "eye.slash" : "eye")
+                                    .foregroundColor(.blue)
+                                    .imageScale(.large)
+                                Text("Hide Dock")
+                                    .font(.headline)
+                            }
+                        }
+                        .onChange(of: isDockHidden, perform: { _ in
+                            // Perform any actions when the toggle state changes
+                        })
+
+                        Toggle(isOn: $hidehomebar) {
+                            HStack(spacing: 20) {
+                                Image(systemName: hidehomebar ? "rectangle.grid.1x2.fill" : "rectangle.grid.1x2")
+                                    .foregroundColor(.purple)
+                                    .imageScale(.large)
+                                Text("Hide Home Bar")
+                                    .font(.headline)
+                            }
+                        }
+                        .onChange(of: hidehomebar, perform: { _ in
+                            // Perform any actions when the toggle state changes
+                        })
+
+                        Toggle(isOn: $enableresset) {
+                            HStack(spacing: 20) {
+                                Image(systemName: enableresset ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
+                                    .foregroundColor(.green)
+                                    .imageScale(.large)
+                                Text("Enable iPhone 14 Pro Resolution")
+                                    .font(.headline)
+                            }
+                        }
+                        .onChange(of: enableresset, perform: { _ in
+                            // Perform any actions when the toggle state changes
+                        })
+
+                        Toggle(isOn: $enableCustomFont) {
+                            HStack(spacing: 20) {
+                                Image(systemName: enableCustomFont ? "a.circle.fill" : "a.circle")
+                                    .foregroundColor(.orange)
+                                    .imageScale(.large)
+                                Text("Enable Custom Font")
+                                    .font(.headline)
+                            }
+                        }
+                        .onChange(of: enableCustomFont, perform: { _ in
+                            // Perform any actions when the toggle state changes
+                        })
+
+                        Toggle(isOn: $enableCCTweaks) {
+                            HStack(spacing: 20) {
+                                Image(systemName: enableCCTweaks ? "pencil.circle.fill" : "pencil.circle")
+                                    .foregroundColor(.pink)
+                                    .imageScale(.large)
+                                Text("Enable CC Custom Icons")
+                                    .font(.headline)
+                            }
+                        }
+                        .onChange(of: enableCCTweaks, perform: { _ in
+                            // Perform any actions when the toggle state changes
+                        })
+                        Toggle(isOn: $enableLSTweaks) {
+                            HStack(spacing: 20) {
+                                Image(systemName: enableLSTweaks ? "pencil.circle.fill" : "pencil.circle")
+                                    .foregroundColor(.pink)
+                                    .imageScale(.large)
+                                Text("Enable Lockscreen Custom Icons")
+                                    .font(.headline)
+                            }
+                        }
+
+                        .onChange(of: enableLSTweaks, perform: { _ in
+                            // Perform any actions when the toggle state changes
+                        })
+                    }
+                    .padding(.vertical, 8)
+                }
+
+                Section(header: Text("Confirm")) {
+                    Button("Confirm") {
+                        kfd = do_kopen(UInt64(puafPages), UInt64(puafMethod), UInt64(kreadMethod), UInt64(kwriteMethod))
+
+                        let tweaks = enabledTweaks()
+
+                        // Convert the Swift array of strings to a C-style array of char*
+                        var cTweaks: [UnsafeMutablePointer<CChar>?] = tweaks.map { strdup($0) } // Use strdup to allocate memory for C-style strings
+
+                        // Add a null pointer at the end to signal the end of the array
+                        cTweaks.append(nil)
+
+                        // Pass the C-style array to do_fun along with the count of tweaks
+                        cTweaks.withUnsafeMutableBufferPointer { buffer in
+                            do_fun(buffer.baseAddress, Int32(buffer.count - 1))
+                        }
+
+                        // Deallocate the C-style strings after use to avoid memory leaks
+                        cTweaks.forEach { free($0) }
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                }
+                
+            }
+            .navigationBarTitle("Pois0nKFD", displayMode: .inline)
+            .accentColor(.green) // Highlight the navigation bar elements in green
+            .navigationBarItems(trailing: settingsButton)
+            .popover(isPresented: $isSettingsPopoverPresented, arrowEdge: .bottom) {
+                settingsPopover
+            }
         }
+        .foregroundColor(.white) // Set the default text color to white
+    }
+    
+    // Settings Button in the Navigation Bar
+    private var settingsButton: some View {
+        Button(action: {
+            isSettingsPopoverPresented.toggle() // Toggle the settings popover
+        }) {
+            Image(systemName: "gearshape")
+                .imageScale(.large)
+                .foregroundColor(.green)
+        }
+    }
+    
+    // Payload Settings Popover
+    private var settingsPopover: some View {
+        VStack {
+            Section(header: Text("Payload Settings")) {
+                Picker("puaf pages:", selection: $puafPages) {
+                    ForEach(puafPagesOptions, id: \.self) { pages in
+                        Text(String(pages))
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .disabled(kfd != 0)
+                
+                Picker("puaf method:", selection: $puafMethod) {
+                    ForEach(0..<puafMethodOptions.count, id: \.self) { index in
+                        Text(puafMethodOptions[index])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .disabled(kfd != 0)
+            }
+            
+            Section(header: Text("Kernel Settings")) {
+                Picker("kread method:", selection: $kreadMethod) {
+                    ForEach(0..<kreadMethodOptions.count, id: \.self) { index in
+                        Text(kreadMethodOptions[index])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .disabled(kfd != 0)
+                
+                Picker("kwrite method:", selection: $kwriteMethod) {
+                    ForEach(0..<kwriteMethodOptions.count, id: \.self) { index in
+                        Text(kwriteMethodOptions[index])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .disabled(kfd != 0)
+            }
+            
+            Button("Apply Settings") {
+                // Do something when the user applies the settings
+                isSettingsPopoverPresented = false // Close the popover after applying settings
+            }
+        }
+        .padding()
+    }
+    
+    // Get the list of enabled tweaks based on the current state of toggles
+    private func enabledTweaks() -> [String] {
+        var enabledTweaks: [String] = []
+        if isDockHidden {
+            enabledTweaks.append("HideDock")
+        }
+        if hidehomebar {
+            enabledTweaks.append("hidehomebar")
+        }
+        if enableresset {
+            enabledTweaks.append("enableresset")
+        }
+        if enableCustomFont {
+            enabledTweaks.append("enableCustomFont")
+        }
+        if enableCCTweaks {
+            enabledTweaks.append("enableCCTweaks")
+        }
+        if enableLSTweaks {
+            enabledTweaks.append("enableLSTweaks")
+        }
+
+
+        return enabledTweaks
     }
 }
 
@@ -91,130 +286,4 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}
-func plistChange(plistPath: String, key: String, value: Int) {
-    let stringsData = try! Data(contentsOf: URL(fileURLWithPath: plistPath))
-    
-    let plist = try! PropertyListSerialization.propertyList(from: stringsData, options: [], format: nil) as! [String: Any]
-    func changeValue(_ dict: [String: Any], _ key: String, _ value: Int) -> [String: Any] {
-        var newDict = dict
-        for (k, v) in dict {
-            if k == key {
-                newDict[k] = value
-            } else if let subDict = v as? [String: Any] {
-                newDict[k] = changeValue(subDict, key, value)
-            }
-        }
-        return newDict
-    }
-    
-    var newPlist = plist
-    newPlist = changeValue(newPlist, key, value)
-    
-    let newData = try! PropertyListSerialization.data(fromPropertyList: newPlist, format: .binary, options: 0)
-    
-    if overwriteFile(originPath: plistPath, replacementData: newData) {
-        // all actions completed
-        DispatchQueue.main.asyncAfter(deadline: .now()){
-            do_respring();
-        }
-    } else {
-        // something went wrong
-      //  shouldAlertPlistCorrupted = true
-    }
-}
-
-
-extension UserDefaults {
-   
-}
-func overwriteFile(originPath: String, replacementData: Data) -> Bool {
-#if false
-    let documentDirectory = FileManager.default.urls(
-        for: .documentDirectory,
-        in: .userDomainMask
-    )[0].path
-    
-    let pathToRealTarget = originPath
-    let originPath = documentDirectory + originPath
-    let origData = try! Data(contentsOf: URL(fileURLWithPath: pathToRealTarget))
-    try! origData.write(to: URL(fileURLWithPath: originPath))
-#endif
-    
-    // open and map original font
-    let fd = open(originPath, O_RDONLY | O_CLOEXEC)
-    if fd == -1 {
-        print("Could not open target file")
-        return false
-    }
-    defer { close(fd) }
-    // check size of font
-    let originalFileSize = lseek(fd, 0, SEEK_END)
-    guard originalFileSize >= replacementData.count else {
-        print("Original file: \(originalFileSize)")
-        print("Replacement file: \(replacementData.count)")
-        print("File too big")
-        return false
-    }
-    lseek(fd, 0, SEEK_SET)
-    
-    // Map the font we want to overwrite so we can mlock it
-    let fileMap = mmap(nil, replacementData.count, PROT_READ, MAP_SHARED, fd, 0)
-    if fileMap == MAP_FAILED {
-        print("Failed to map")
-        return false
-    }
-    // mlock so the file gets cached in memory
-    guard mlock(fileMap, replacementData.count) == 0 else {
-        print("Failed to mlock")
-        return true
-    }
-    
-    // for every 16k chunk, rewrite
-    print(Date())
-    for chunkOff in stride(from: 0, to: replacementData.count, by: 0x4000) {
-        print(String(format: "%lx", chunkOff))
-//        if chunkOff % 0x40000 == 0 {
-//            updateProgress(total: false, progress: Double(chunkOff))
-//        }
-        let dataChunk = replacementData[chunkOff..<min(replacementData.count, chunkOff + 0x4000)]
-        var overwroteOne = false
-        for _ in 0..<2 {
-              let overwriteSucceeded = dataChunk.withUnsafeBytes { dataChunkBytes in
-                    return funVnodeOverwriteWithBytes(
-                        dynamicPath, Int64(chunkOff), dataChunkBytes.baseAddress, dataChunkBytes.count, true)
-              }
-//        let dataChunk = fontData[chunkOff..<min(fontData.count, chunkOff + 0x4000)]
-//        var overwroteOne = false
-//        print(pathToTargetFont, chunkOff, dataChunk.count)
-//        for _ in 0..<2 {
-//            let overwriteSucceeded = dataChunk.withUnsafeBytes { dataChunkBytes in
-//                return funVnodeOverwriteWithBytes(
-//                    pathToTargetFont,
-//                    Int64(chunkOff),
-//                    dataChunkBytes.baseAddress?.bindMemory(to: UInt8.self, capacity: dataChunkBytes.count),
-//                    dataChunkBytes.count,
-//                    true
-//                )
-//            }
-              if overwriteSucceeded != 0 {
-                overwroteOne = true
-                break
-              }
-//              print("try again?!")
-//              sleep(1)
-                break
-            }
-        guard overwroteOne else {
-           // sendImportMessage(.failure("can't overwrite"))
-            print("try again?!")
-            return false;
-         //   return
-        }
-    }
-
-  //  updateProgress(total: false, progress: Double(replacementData.count))
-    //sendImportMessage(.success)
-    print(Date())
-    return false;
 }

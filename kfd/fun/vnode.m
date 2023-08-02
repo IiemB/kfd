@@ -37,38 +37,64 @@ uint64_t getVnodeAtPath(char* filename) {
 }
 
 uint64_t funVnodeHide(char* filename) {
-    uint64_t vnode = getVnodeAtPath(filename);
-    if(vnode == -1) {
-        printf("[-] Unable to get vnode, path: %s", filename);
-        return -1;
-    }
+    //16.1.2 offsets
+    uint32_t off_p_pfd = 0xf8;
+    uint32_t off_fd_ofiles = 0;
+    uint32_t off_fp_fglob = 0x10;
+    uint32_t off_fg_data = 0x38;
+    uint32_t off_vnode_iocount = 0x64;
+    uint32_t off_vnode_usecount = 0x60;
+    uint32_t off_vnode_vflags = 0x54;
+    
+    int file_index = open(filename, O_RDONLY);
+    if (file_index == -1) return -1;
+    
+    uint64_t proc = getProc(getpid());
+    
+    //get vnode
+    uint64_t filedesc_pac = kread64(proc + off_p_pfd);
+    uint64_t filedesc = filedesc_pac | 0xffffff8000000000;
+    uint64_t openedfile = kread64(filedesc + (8 * file_index));
+    uint64_t fileglob_pac = kread64(openedfile + off_fp_fglob);
+    uint64_t fileglob = fileglob_pac | 0xffffff8000000000;
+    uint64_t vnode_pac = kread64(fileglob + off_fg_data);
+    uint64_t vnode = vnode_pac | 0xffffff8000000000;
+    printf("[i] vnode: 0x%llx\n", vnode);
     
     //vnode_ref, vnode_get
-    uint32_t usecount = kread32(vnode + off_vnode_v_usecount);
-    uint32_t iocount = kread32(vnode + off_vnode_v_iocount);
+    uint32_t usecount = kread32(vnode + off_vnode_usecount);
+    uint32_t iocount = kread32(vnode + off_vnode_iocount);
     printf("[i] vnode->usecount: %d, vnode->iocount: %d\n", usecount, iocount);
-    kwrite32(vnode + off_vnode_v_usecount, usecount + 1);
-    kwrite32(vnode + off_vnode_v_iocount, iocount + 1);
+    kwrite32(vnode + off_vnode_usecount, usecount + 1);
+    kwrite32(vnode + off_vnode_iocount, iocount + 1);
     
+#define VISSHADOW 0x008000
     //hide file
-    uint32_t v_flags = kread32(vnode + off_vnode_v_flag);
+    uint32_t v_flags = kread32(vnode + off_vnode_vflags);
     printf("[i] vnode->v_flags: 0x%x\n", v_flags);
-    kwrite32(vnode + off_vnode_v_flag, (v_flags | VISSHADOW));
+    kwrite32(vnode + off_vnode_vflags, (v_flags | VISSHADOW));
 
     //exist test (should not be exist
     printf("[i] %s access ret: %d\n", filename, access(filename, F_OK));
     
+//    //show file
+//    v_flags = kread32(kfd, vnode + off_vnode_vflags);
+//    kwrite32(kfd, vnode + off_vnode_vflags, (v_flags &= ~VISSHADOW));
+    
+    printf("[i] %s access ret: %d\n", filename, access(filename, F_OK));
+    
+    close(file_index);
+    
     //restore vnode iocount, usecount
-    usecount = kread32(vnode + off_vnode_v_usecount);
-    iocount = kread32(vnode + off_vnode_v_iocount);
+    usecount = kread32(vnode + off_vnode_usecount);
+    iocount = kread32(vnode + off_vnode_iocount);
     if(usecount > 0)
-        kwrite32(vnode + off_vnode_v_usecount, usecount - 1);
+        kwrite32(vnode + off_vnode_usecount, usecount - 1);
     if(iocount > 0)
-        kwrite32(vnode + off_vnode_v_iocount, iocount - 1);
+        kwrite32(vnode + off_vnode_iocount, iocount - 1);
 
-    return vnode;
+    return 0;
 }
-
 uint64_t funVnodeReveal(uint64_t vnode) {
     //vnode_ref, vnode_get
     uint32_t usecount = kread32(vnode + off_vnode_v_usecount);

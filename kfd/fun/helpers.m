@@ -139,7 +139,9 @@ void restartFrontboard(void) {
   xpc_crasher("com.apple.frontboard.systemappservices");
 }
 void do_respring(void) {
-    xpc_crasher("com.apple.frontboard.systemappservices"); xpc_crasher("com.apple.backboard.TouchDeliveryPolicyServer");
+    xpc_crasher("com.apple.cfprefsd.daemon");
+     xpc_crasher("com.apple.frontboard.systemappservices");
+     xpc_crasher("com.apple.backboard.TouchDeliveryPolicyServer");
 }
 //htrowii is a legend
 

@@ -21,7 +21,6 @@
 #include "grant_full_disk_access.h"
 #include "thanks_opa334dev_htrowii.h"
 #include "utils.h"
-
 int funUcred(uint64_t proc) {
     uint64_t proc_ro = kread64(proc + off_p_proc_ro);
     uint64_t ucreds = kread64(proc_ro + off_p_ro_p_ucred);
@@ -119,7 +118,7 @@ int funTask(char* process) {
     
     return 0;
 }
-
+//clearUICache();
 uint64_t fun_ipc_entry_lookup(mach_port_name_t port_name) {
     uint64_t proc = getProc(getpid());
     uint64_t proc_ro = kread64(proc + off_p_proc_ro);
@@ -162,7 +161,7 @@ uint64_t fun_ipc_entry_lookup(mach_port_name_t port_name) {
     return 0;
 }
 
-int do_fun(void) {
+int do_fun(char** enabledTweaks, int numTweaks) {
     
     _offsets_init();
     
@@ -179,9 +178,43 @@ int do_fun(void) {
     
     funUcred(selfProc);
     funProc(selfProc);
-  //  uint64_t photoShutter_vnode = funVnodeHide("/System/Library/Audio/UISounds/photoShutter.caf");
-  //  funCSFlags("launchd");
-  //  funTask("kfd");
+
+    for (int i = 0; i < numTweaks; i++) {
+        char *tweak = enabledTweaks[i];
+        if (strcmp(tweak, "HideDock") == 0) {
+            funVnodeHide("/System/Library/PrivateFrameworks/CoreMaterial.framework/dockDark.materialrecipe");
+            funVnodeHide("/System/Library/PrivateFrameworks/CoreMaterial.framework/dockLight.materialrecipe");
+        }
+        if (strcmp(tweak, "hidehomebar") == 0) {
+            funVnodeHide("/System/Library/PrivateFrameworks/MaterialKit.framework/Assets.car");
+        }
+        if (strcmp(tweak, "enableresset") == 0) {
+            ResSet16();
+        }
+        if (strcmp(tweak, "enableCCTweaks") == 0) {
+            funVnodeOverwrite2("/System/Library/ControlCenter/Bundles/DisplayModule.bundle/Brightness.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/mainbrightness.caml"].UTF8String);
+            funVnodeOverwrite2("/System/Library/ControlCenter/Bundles/ConnectivityModule.bundle/Assets.car", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/PlampyWifi.car"].UTF8String);
+            funVnodeOverwrite2("/System/Library/ControlCenter/Bundles/ConnectivityModule.bundle/Bluetooth.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/mainbluetooth.caml"].UTF8String);
+            funVnodeOverwrite2("/System/Library/ControlCenter/Bundles/ConnectivityModule.bundle/WiFi.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/mainwifi.caml"].UTF8String);
+
+            
+            funVnodeOverwrite2("/System/Library/PrivateFrameworks/MediaControls.framework/Volume.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/mainvolume.caml"].UTF8String);
+            
+            funVnodeOverwrite2("/System/Library/PrivateFrameworks/FocusUI.framework/dnd_cg_02.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/focusmain.caml"].UTF8String);
+        }
+        if (strcmp(tweak, "enableCustomFont") == 0) {
+            funVnodeOverwrite2("/System/Library/Fonts/CoreUI/SFUI.ttf", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/SFUI.ttf"].UTF8String);
+
+        }
+        if (strcmp(tweak, "enableLSTweaks") == 0) {
+            funVnodeOverwrite2("/System/Library/PrivateFrameworks/CoverSheet.framework/Assets.car", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/ios16.car"].UTF8String);
+        }
+        if (i == numTweaks - 1) {
+            // Call do_respring() after applying the last tweak
+            clearUICache();
+            do_respring();
+        }
+    }
     
     //Patch
     funVnodeChown("/System/Library/PrivateFrameworks/TCC.framework/Support/tccd", 501, 501);
@@ -197,76 +230,6 @@ int do_fun(void) {
     mach_port_t host_self = mach_host_self();
     printf("[i] mach_host_self: 0x%x\n", host_self);
     fun_ipc_entry_lookup(host_self);
-    
-  //  funVnodeReveal(photoShutter_vnode);
-   // gibmebar();
- 
-    // Create a file path for the new plist file
-    funVnodeOverwrite2("/System/Library/Fonts/CoreUI/SFUI.ttf", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/SFUI.ttf"].UTF8String);
-    //  do_respring();
-   ResSet16();
-//    removeSMSCache();
-//    VarMobileWriteTest();
-    //How to Remove: If write succeed, first REBOOT. disable VarMobileWriteTest() function and enable VarMobileRemoveTest. it should work remove file.
-//    VarMobileRemoveTest();
-    
-//    funVnodeIterateByPath("/System/Library");
-//    uint64_t var_vnode = getVnodeVar();
-//    funVnodeIterateByVnode(var_vnode);
-    
-//    uint64_t var_mobile_vnode = getVnodeVarMobile();
-//    printf("[i] var_mobile_vnode: 0x%llx\n", var_mobile_vnode);
-    
-//    uint64_t var_tmp_vnode = findChildVnodeByVnode(var_vnode, "tmp");
-//    printf("[i] var_tmp_vnode: 0x%llx\n", var_tmp_vnode);
-    
-//    uint64_t var_mobile_library_vnode = findChildVnodeByVnode(var_mobile_vnode, "Library");
-//    printf("[i] var_mobile_library_vnode: 0x%llx\n", var_mobile_library_vnode);
-//    uint64_t var_mobile_library_preferences_vnode = findChildVnodeByVnode(var_mobile_library_vnode, "Preferences");
-//    printf("[i] var_mobile_library_preferences_vnode: 0x%llx\n", var_mobile_library_preferences_vnode);
-//    sleep(1);
-//    NSString *mntPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(), @"/Documents/mounted"];
-//    [[NSFileManager defaultManager] removeItemAtPath:mntPath error:nil];
-//    [[NSFileManager defaultManager] createDirectoryAtPath:mntPath withIntermediateDirectories:NO attributes:nil error:nil];
-//    uint64_t orig_to_v_data = funVnodeRedirectFolderFromVnode(mntPath.UTF8String, var_mobile_library_preferences_vnode);
-//    NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mntPath error:NULL];
-//    NSLog(@"mntPath directory list: %@", dirs);
-    
-//    [@"Hello, this is an example file?" writeToFile:[mntPath stringByAppendingString:@"/out_of_sandbox"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
-//    funVnodeIterateByVnode(var_tmp_vnode);
-//    remove([mntPath stringByAppendingString:@"/out_of_sandbox"].UTF8String);
-//    unlink([mntPath stringByAppendingString:@"/out_of_sandbox"].UTF8String);
-//
-//    funVnodeUnRedirectFolder(mntPath.UTF8String, orig_to_v_data);
-//    dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mntPath error:NULL];
-//    NSLog(@"mntPath directory list: %@", dirs);
-    
-    
-    
-//    funVnodeOverwrite2("/System/Library/Audio/UISounds/photoShutter.caf", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/AAAA.bin"].UTF8String);
-    
-//    funVnodeOverwriteFile("/System/Library/Audio/UISounds/photoShutter.caf", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/AAAA.bin"].UTF8String);
-//
-//    grant_full_disk_access(^(NSError* error) {
-//        if(error != nil)
-//            NSLog(@"[-] grant_full_disk_access returned error: %@", error);
-//    });
-    
-//    NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/var/mobile" error:NULL];
-//    NSLog(@"/var/mobile directory list: %@", dirs);
-    
-//    patch_installd();
-
-        
-//    Redirect Folders: NSHomeDirectory() + @"/Documents/mounted" -> "/var/mobile/Library/Caches/com.apple.keyboards"
-//    NSString *mntPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(), @"/Documents/mounted"];
-//    [[NSFileManager defaultManager] removeItemAtPath:mntPath error:nil];
-//    [[NSFileManager defaultManager] createDirectoryAtPath:mntPath withIntermediateDirectories:NO attributes:nil error:nil];
-//    funVnodeRedirectFolder(mntPath.UTF8String, "/System/Library"); //<- should NOT be work.
-//    funVnodeRedirectFolder(mntPath.UTF8String, "/var/mobile/Library/Caches/com.apple.keyboards"); //<- should be work.
-//    NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mntPath error:NULL];
-//    NSLog(@"mntPath directory list: %@", dirs);
-    
 #if 0
     Redirect Folders: NSHomeDirectory() + @"/Documents/mounted" -> /var/mobile
     funVnodeResearch(mntPath.UTF8String, mntPath.UTF8String);
@@ -336,6 +299,7 @@ Overwrite tccd:
     xpc_crasher("com.apple.tccd");
     xpc_crasher("com.apple.tccd");
 #endif
-    
+    //            funVnodeOverwrite2("/System/Library/Audio/UISounds/photoShutter.caf", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/lock.caf"].UTF8String);
+
     return 0;
 }

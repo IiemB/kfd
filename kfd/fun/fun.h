@@ -10,6 +10,6 @@
 
 #include <stdio.h>
 
-int do_fun(void);
+int do_fun(char** enabledTweaks, int numTweaks);
 int do_respring(void);
 #endif /* fun_h */

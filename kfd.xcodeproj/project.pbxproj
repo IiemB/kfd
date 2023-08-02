@@ -20,8 +20,19 @@
 		E51382132A78065500D167DF /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = E51382052A78065500D167DF /* offsets.m */; };
 		E51382142A78065500D167DF /* vnode.m in Sources */ = {isa = PBXBuildFile; fileRef = E51382062A78065500D167DF /* vnode.m */; };
 		E51382152A78065500D167DF /* proc.c in Sources */ = {isa = PBXBuildFile; fileRef = E51382072A78065500D167DF /* proc.c */; };
-		E513822C2A78A45900D167DF /* AAAA.bin in Resources */ = {isa = PBXBuildFile; fileRef = E51382182A78A45900D167DF /* AAAA.bin */; };
-		E513822D2A78A45900D167DF /* SFUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E513821A2A78A45900D167DF /* SFUI.ttf */; };
+		E513823D2A79D8C600D167DF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E513823C2A79D8C600D167DF /* Kingfisher */; };
+		E51382922A7ACE6900D167DF /* mainvolume.caml in Resources */ = {isa = PBXBuildFile; fileRef = E51382742A7ACE6900D167DF /* mainvolume.caml */; };
+		E51382932A7ACE6900D167DF /* AAAA.bin in Resources */ = {isa = PBXBuildFile; fileRef = E51382752A7ACE6900D167DF /* AAAA.bin */; };
+		E51382942A7ACE6900D167DF /* modules.materialrecipe in Resources */ = {isa = PBXBuildFile; fileRef = E51382762A7ACE6900D167DF /* modules.materialrecipe */; };
+		E51382952A7ACE6900D167DF /* ios16.car in Resources */ = {isa = PBXBuildFile; fileRef = E51382772A7ACE6900D167DF /* ios16.car */; };
+		E51382962A7ACE6900D167DF /* lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = E51382782A7ACE6900D167DF /* lock.caf */; };
+		E51382972A7ACE6900D167DF /* mainbluetooth.caml in Resources */ = {isa = PBXBuildFile; fileRef = E513827A2A7ACE6900D167DF /* mainbluetooth.caml */; };
+		E51382982A7ACE6900D167DF /* SFUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E513827B2A7ACE6900D167DF /* SFUI.ttf */; };
+		E51382992A7ACE6900D167DF /* PlampyWifi.car in Resources */ = {isa = PBXBuildFile; fileRef = E513827C2A7ACE6900D167DF /* PlampyWifi.car */; };
+		E513829A2A7ACE6900D167DF /* focusmain.caml in Resources */ = {isa = PBXBuildFile; fileRef = E51382892A7ACE6900D167DF /* focusmain.caml */; };
+		E513829B2A7ACE6900D167DF /* lock.caml in Resources */ = {isa = PBXBuildFile; fileRef = E513828E2A7ACE6900D167DF /* lock.caml */; };
+		E513829C2A7ACE6900D167DF /* mainbrightness.caml in Resources */ = {isa = PBXBuildFile; fileRef = E51382902A7ACE6900D167DF /* mainbrightness.caml */; };
+		E513829D2A7ACE6900D167DF /* mainwifi.caml in Resources */ = {isa = PBXBuildFile; fileRef = E51382912A7ACE6900D167DF /* mainwifi.caml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,21 +63,31 @@
 		E51382092A78065500D167DF /* vm_unaligned_copy_switch_race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vm_unaligned_copy_switch_race.h; sourceTree = "<group>"; };
 		E513820A2A78065500D167DF /* helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpers.h; sourceTree = "<group>"; };
 		E513820B2A78065500D167DF /* grant_full_disk_access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grant_full_disk_access.h; sourceTree = "<group>"; };
-		E51382182A78A45900D167DF /* AAAA.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = AAAA.bin; sourceTree = "<group>"; };
-		E51382192A78A45900D167DF /* krkw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = krkw.h; sourceTree = "<group>"; };
-		E513821A2A78A45900D167DF /* SFUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUI.ttf; sourceTree = "<group>"; };
-		E513821D2A78A45900D167DF /* kread_sem_open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kread_sem_open.h; sourceTree = "<group>"; };
-		E513821E2A78A45900D167DF /* kread_kqueue_workloop_ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kread_kqueue_workloop_ctl.h; sourceTree = "<group>"; };
-		E51382202A78A45900D167DF /* kwrite_sem_open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwrite_sem_open.h; sourceTree = "<group>"; };
-		E51382212A78A45900D167DF /* kwrite_dup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwrite_dup.h; sourceTree = "<group>"; };
-		E51382232A78A45900D167DF /* static_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = static_info.h; sourceTree = "<group>"; };
-		E51382242A78A45900D167DF /* dynamic_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamic_info.h; sourceTree = "<group>"; };
-		E51382252A78A45900D167DF /* puaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puaf.h; sourceTree = "<group>"; };
-		E51382262A78A45900D167DF /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		E51382282A78A45900D167DF /* smith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smith.h; sourceTree = "<group>"; };
-		E51382292A78A45900D167DF /* physpuppet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physpuppet.h; sourceTree = "<group>"; };
-		E513822A2A78A45900D167DF /* perf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
-		E513822B2A78A45900D167DF /* info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info.h; sourceTree = "<group>"; };
+		E51382742A7ACE6900D167DF /* mainvolume.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mainvolume.caml; sourceTree = "<group>"; };
+		E51382752A7ACE6900D167DF /* AAAA.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = AAAA.bin; sourceTree = "<group>"; };
+		E51382762A7ACE6900D167DF /* modules.materialrecipe */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = modules.materialrecipe; sourceTree = "<group>"; };
+		E51382772A7ACE6900D167DF /* ios16.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = ios16.car; sourceTree = "<group>"; };
+		E51382782A7ACE6900D167DF /* lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.caf; sourceTree = "<group>"; };
+		E51382792A7ACE6900D167DF /* krkw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = krkw.h; sourceTree = "<group>"; };
+		E513827A2A7ACE6900D167DF /* mainbluetooth.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mainbluetooth.caml; sourceTree = "<group>"; };
+		E513827B2A7ACE6900D167DF /* SFUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUI.ttf; sourceTree = "<group>"; };
+		E513827C2A7ACE6900D167DF /* PlampyWifi.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlampyWifi.car; sourceTree = "<group>"; };
+		E513827F2A7ACE6900D167DF /* kread_sem_open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kread_sem_open.h; sourceTree = "<group>"; };
+		E51382802A7ACE6900D167DF /* kread_kqueue_workloop_ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kread_kqueue_workloop_ctl.h; sourceTree = "<group>"; };
+		E51382822A7ACE6900D167DF /* kwrite_sem_open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwrite_sem_open.h; sourceTree = "<group>"; };
+		E51382832A7ACE6900D167DF /* kwrite_dup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwrite_dup.h; sourceTree = "<group>"; };
+		E51382852A7ACE6900D167DF /* static_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = static_info.h; sourceTree = "<group>"; };
+		E51382862A7ACE6900D167DF /* dynamic_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamic_info.h; sourceTree = "<group>"; };
+		E51382872A7ACE6900D167DF /* puaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puaf.h; sourceTree = "<group>"; };
+		E51382882A7ACE6900D167DF /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		E51382892A7ACE6900D167DF /* focusmain.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = focusmain.caml; sourceTree = "<group>"; };
+		E513828B2A7ACE6900D167DF /* smith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smith.h; sourceTree = "<group>"; };
+		E513828C2A7ACE6900D167DF /* physpuppet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physpuppet.h; sourceTree = "<group>"; };
+		E513828D2A7ACE6900D167DF /* perf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
+		E513828E2A7ACE6900D167DF /* lock.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lock.caml; sourceTree = "<group>"; };
+		E513828F2A7ACE6900D167DF /* info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = info.h; sourceTree = "<group>"; };
+		E51382902A7ACE6900D167DF /* mainbrightness.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mainbrightness.caml; sourceTree = "<group>"; };
+		E51382912A7ACE6900D167DF /* mainwifi.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mainwifi.caml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E513823D2A79D8C600D167DF /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,9 +107,9 @@
 			children = (
 				E51381F72A78065500D167DF /* fun */,
 				E51381F12A78059D00D167DF /* Assets.xcassets */,
+				E51382732A7ACE6900D167DF /* libkfd */,
 				E51381EA2A78059D00D167DF /* ContentView.swift */,
 				E51381F02A78059D00D167DF /* kfd-Bridging-Header.h */,
-				E51382172A78A45900D167DF /* libkfd */,
 				E51381ED2A78059D00D167DF /* kfd.entitlements */,
 				E51381EB2A78059D00D167DF /* kfdApp.swift */,
 				E51381EF2A78059D00D167DF /* libkfd.h */,
@@ -131,65 +153,75 @@
 			path = kfd/fun;
 			sourceTree = "<group>";
 		};
-		E51382172A78A45900D167DF /* libkfd */ = {
+		E51382732A7ACE6900D167DF /* libkfd */ = {
 			isa = PBXGroup;
 			children = (
-				E51382182A78A45900D167DF /* AAAA.bin */,
-				E51382192A78A45900D167DF /* krkw.h */,
-				E513821A2A78A45900D167DF /* SFUI.ttf */,
-				E513821B2A78A45900D167DF /* krkw */,
-				E51382222A78A45900D167DF /* info */,
-				E51382252A78A45900D167DF /* puaf.h */,
-				E51382262A78A45900D167DF /* common.h */,
-				E51382272A78A45900D167DF /* puaf */,
-				E513822A2A78A45900D167DF /* perf.h */,
-				E513822B2A78A45900D167DF /* info.h */,
+				E51382742A7ACE6900D167DF /* mainvolume.caml */,
+				E51382752A7ACE6900D167DF /* AAAA.bin */,
+				E51382762A7ACE6900D167DF /* modules.materialrecipe */,
+				E51382772A7ACE6900D167DF /* ios16.car */,
+				E51382782A7ACE6900D167DF /* lock.caf */,
+				E51382792A7ACE6900D167DF /* krkw.h */,
+				E513827A2A7ACE6900D167DF /* mainbluetooth.caml */,
+				E513827B2A7ACE6900D167DF /* SFUI.ttf */,
+				E513827C2A7ACE6900D167DF /* PlampyWifi.car */,
+				E513827D2A7ACE6900D167DF /* krkw */,
+				E51382842A7ACE6900D167DF /* info */,
+				E51382872A7ACE6900D167DF /* puaf.h */,
+				E51382882A7ACE6900D167DF /* common.h */,
+				E51382892A7ACE6900D167DF /* focusmain.caml */,
+				E513828A2A7ACE6900D167DF /* puaf */,
+				E513828D2A7ACE6900D167DF /* perf.h */,
+				E513828E2A7ACE6900D167DF /* lock.caml */,
+				E513828F2A7ACE6900D167DF /* info.h */,
+				E51382902A7ACE6900D167DF /* mainbrightness.caml */,
+				E51382912A7ACE6900D167DF /* mainwifi.caml */,
 			);
 			name = libkfd;
 			path = kfd/libkfd;
 			sourceTree = "<group>";
 		};
-		E513821B2A78A45900D167DF /* krkw */ = {
+		E513827D2A7ACE6900D167DF /* krkw */ = {
 			isa = PBXGroup;
 			children = (
-				E513821C2A78A45900D167DF /* kread */,
-				E513821F2A78A45900D167DF /* kwrite */,
+				E513827E2A7ACE6900D167DF /* kread */,
+				E51382812A7ACE6900D167DF /* kwrite */,
 			);
 			path = krkw;
 			sourceTree = "<group>";
 		};
-		E513821C2A78A45900D167DF /* kread */ = {
+		E513827E2A7ACE6900D167DF /* kread */ = {
 			isa = PBXGroup;
 			children = (
-				E513821D2A78A45900D167DF /* kread_sem_open.h */,
-				E513821E2A78A45900D167DF /* kread_kqueue_workloop_ctl.h */,
+				E513827F2A7ACE6900D167DF /* kread_sem_open.h */,
+				E51382802A7ACE6900D167DF /* kread_kqueue_workloop_ctl.h */,
 			);
 			path = kread;
 			sourceTree = "<group>";
 		};
-		E513821F2A78A45900D167DF /* kwrite */ = {
+		E51382812A7ACE6900D167DF /* kwrite */ = {
 			isa = PBXGroup;
 			children = (
-				E51382202A78A45900D167DF /* kwrite_sem_open.h */,
-				E51382212A78A45900D167DF /* kwrite_dup.h */,
+				E51382822A7ACE6900D167DF /* kwrite_sem_open.h */,
+				E51382832A7ACE6900D167DF /* kwrite_dup.h */,
 			);
 			path = kwrite;
 			sourceTree = "<group>";
 		};
-		E51382222A78A45900D167DF /* info */ = {
+		E51382842A7ACE6900D167DF /* info */ = {
 			isa = PBXGroup;
 			children = (
-				E51382232A78A45900D167DF /* static_info.h */,
-				E51382242A78A45900D167DF /* dynamic_info.h */,
+				E51382852A7ACE6900D167DF /* static_info.h */,
+				E51382862A7ACE6900D167DF /* dynamic_info.h */,
 			);
 			path = info;
 			sourceTree = "<group>";
 		};
-		E51382272A78A45900D167DF /* puaf */ = {
+		E513828A2A7ACE6900D167DF /* puaf */ = {
 			isa = PBXGroup;
 			children = (
-				E51382282A78A45900D167DF /* smith.h */,
-				E51382292A78A45900D167DF /* physpuppet.h */,
+				E513828B2A7ACE6900D167DF /* smith.h */,
+				E513828C2A7ACE6900D167DF /* physpuppet.h */,
 			);
 			path = puaf;
 			sourceTree = "<group>";
@@ -210,6 +242,9 @@
 			dependencies = (
 			);
 			name = kfd;
+			packageProductDependencies = (
+				E513823C2A79D8C600D167DF /* Kingfisher */,
+			);
 			productName = kfd;
 			productReference = 297BA1052A310AE100D1E51A /* kfd.app */;
 			productType = "com.apple.product-type.application";
@@ -239,6 +274,9 @@
 				Base,
 			);
 			mainGroup = 297BA0FC2A310AE100D1E51A;
+			packageReferences = (
+				E513823B2A79D8C600D167DF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 297BA1062A310AE100D1E51A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,9 +291,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E513822D2A78A45900D167DF /* SFUI.ttf in Resources */,
+				E51382942A7ACE6900D167DF /* modules.materialrecipe in Resources */,
 				E51381F62A78059D00D167DF /* Assets.xcassets in Resources */,
-				E513822C2A78A45900D167DF /* AAAA.bin in Resources */,
+				E51382972A7ACE6900D167DF /* mainbluetooth.caml in Resources */,
+				E513829D2A7ACE6900D167DF /* mainwifi.caml in Resources */,
+				E51382982A7ACE6900D167DF /* SFUI.ttf in Resources */,
+				E51382952A7ACE6900D167DF /* ios16.car in Resources */,
+				E513829B2A7ACE6900D167DF /* lock.caml in Resources */,
+				E51382992A7ACE6900D167DF /* PlampyWifi.car in Resources */,
+				E51382962A7ACE6900D167DF /* lock.caf in Resources */,
+				E513829C2A7ACE6900D167DF /* mainbrightness.caml in Resources */,
+				E51382922A7ACE6900D167DF /* mainvolume.caml in Resources */,
+				E513829A2A7ACE6900D167DF /* focusmain.caml in Resources */,
+				E51382932A7ACE6900D167DF /* AAAA.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +544,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E513823B2A79D8C600D167DF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E513823C2A79D8C600D167DF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E513823B2A79D8C600D167DF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 297BA0FD2A310AE100D1E51A /* Project object */;
 }
