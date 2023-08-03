@@ -73,8 +73,8 @@ uint32_t off_namecache_nc_child_tqe_prev = 0;
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 
 void _offsets_init(void) {
-    if (SYSTEM_VERSION_EQUAL_TO(@"16.1.2") || SYSTEM_VERSION_EQUAL_TO(@"16.4.1")) {
-        printf("[i] offsets selected for iOS 16.1.2\n");
+    if (true) {
+        printf("[i] offsets selected for iOS 16.6b1 (Should work on most other versions too)\n");
         //https://github.com/apple-oss-distributions/xnu/blob/xnu-8792.41.9/bsd/sys/proc_internal.h#L273
         //https://github.com/apple-oss-distributions/xnu/blob/xnu-8792.41.9/bsd/sys/queue.h#L487
         off_p_list_le_prev = 0x8;
@@ -159,10 +159,5 @@ void _offsets_init(void) {
         //https://github.com/apple-oss-distributions/xnu/blob/xnu-8792.41.9/bsd/sys/namei.h#L243
         off_namecache_nc_vp = 0x48;
         off_namecache_nc_child_tqe_prev = 0x0;
-
-    
-    } else {
-        printf("[-] No matching offsets.\n");
-        exit(EXIT_FAILURE);
     }
 }
