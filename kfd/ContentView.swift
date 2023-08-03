@@ -25,53 +25,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                VStack(spacing: 20) {
-                    Button(action: {
-                    }) {
-                        HStack {
-                            Image(systemName: "play.fill")
-                            Text("Open exploit")
-                        }
-                    }
-                    .disabled(kfd != 0)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(kfd != 0 ? Color.gray.opacity(0.5) : Color.blue)
-                    .cornerRadius(8)
-                    .foregroundColor(.white)
-                    
-                    Button(action: {
-                      //  do_kclose()
-                      //  kfd = 0
-                    }) {
-                        HStack {
-                            Image(systemName: "stop.fill")
-                            Text("Close exploit")
-                        }
-                    }
-                    .disabled(kfd == 0)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(kfd == 0 ? Color.gray.opacity(0.5) : Color.blue)
-                    .cornerRadius(8)
-                    .foregroundColor(.white)
-                    
-                    Button(action: {
-                          //kfd = 0
-                       // do_respring()
-                    }) {
-                        HStack {
-                            Image(systemName: "arrow.clockwise.circle.fill")
-                            Text("Respring")
-                        }
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.red)
-                    .cornerRadius(8)
-                    .foregroundColor(.white)
                 
-            }
+            
                 if kfd != 0 {
                     Section(header: Text("Status")) {
                         VStack(alignment: .leading, spacing: 8) {

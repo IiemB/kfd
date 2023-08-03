@@ -95,7 +95,7 @@ int ResSet16(void) {
     UnRedirectAndRemoveFolder(orig_to_v_data);
     
     //3. xpc restart
-    do_kclose();
+    //do_kclose();
     sleep(1);
 
     return 0;
