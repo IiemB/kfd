@@ -86,17 +86,18 @@ void info_init(struct kfd* kfd)
     usize size2 = sizeof(kfd->info.env.kern_version);
     assert_bsd(sysctlbyname("kern.version", &kfd->info.env.kern_version, &size2, NULL, 0));
     print_string(kfd->info.env.kern_version);
-
+    
     const u64 number_of_kern_versions = sizeof(kern_versions) / sizeof(kern_versions[0]);
     for (u64 i = 0; i < number_of_kern_versions; i++) {
         const char* current_kern_version = kern_versions[i].kern_version;
         if (!memcmp(kfd->info.env.kern_version, current_kern_version, strlen(current_kern_version))) {
             kfd->info.env.vid = i;
             print_u64(kfd->info.env.vid);
+            t1sz_boot = strstr(current_kern_version, "T8120") != NULL ? 17ull : 25ull;
             return;
         }
     }
-
+    
     assert_false("unsupported osversion");
 }
 
