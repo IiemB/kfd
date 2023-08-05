@@ -1247,7 +1247,7 @@ const struct dynamic_info kern_versions[] = {
         .kernelcache__vm_page_array_beginning_addr = 0xfffffff0078fe118,
         .kernelcache__vm_page_array_ending_addr = 0xfffffff00a462988,
         .kernelcache__vn_kqfilter = 0xfffffff007f45f7c,
-    },
+    },   
 
      /**************** End iPhone 11 Series ***********************/
 
@@ -1413,7 +1413,7 @@ const struct dynamic_info kern_versions[] = {
         .kernelcache__vn_kqfilter = 0xfffffff007efe210,
     },
 
-    //iPhone 14 Pro, 16.4.1
+    //iPhone 14 Pro, 16.4.1 
     {
         .kern_version = "Darwin Kernel Version 22.4.0: Mon Mar  6 20:42:19 PST 2023; root:xnu-8796.102.5~1/RELEASE_ARM64_T8120",
         .fileglob__fg_ops = 0x28,
