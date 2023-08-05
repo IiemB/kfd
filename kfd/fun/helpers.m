@@ -129,7 +129,6 @@ void xpc_crasher(char* service_name) {
   return;
 }
 
-
 void restartBackboard(void) {
   xpc_crasher("com.apple.backboard.TouchDeliveryPolicyServer");
 }
@@ -139,10 +138,3 @@ void restartFrontboard(void) {
   // You may also need to exit(0) afterwards
   xpc_crasher("com.apple.frontboard.systemappservices");
 }
-void do_respring(void) {
-    xpc_crasher("com.apple.cfprefsd.daemon");
-     xpc_crasher("com.apple.frontboard.systemappservices");
-     xpc_crasher("com.apple.backboard.TouchDeliveryPolicyServer");
-}
-//htrowii is a legend
-

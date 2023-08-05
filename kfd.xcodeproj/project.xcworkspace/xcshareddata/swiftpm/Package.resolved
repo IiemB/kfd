@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "kingfisher",
+      "identity" : "swiftutils",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "location" : "https://github.com/pinauten/SwiftUtils",
       "state" : {
-        "revision" : "c75584ac759cbb16b204d0a7de3ebf53ea6b304d",
-        "version" : "7.9.0"
+        "branch" : "master",
+        "revision" : "1d37faabb4c58b3152394c9b6e1c1a68507646b9"
       }
     }
   ],

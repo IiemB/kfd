@@ -1,4 +1,23 @@
-# kfd
+# posi0nKFD
+posi0nKFD is a fork of KFD with a toggleable tweak list and no firm or real objectives except offering a completely open source platform for modding using KFD. 
+## Contributors:
+
+GenericCoding (main developer)
+
+Lrdsnow (Major contribution in device support via offsets and building IPAs.)
+
+hrtowii (tweak and icon contributor and also a major contributor to KFD development in general.) 
+
+iiem-ukur (revamped internal functionality for tweak list. https://github.com/GenericCoding/kfd/pull/4/commits/dd8c01ec8c2a7e9710ee226d5736fdd4ba6b08cb)
+## Special thanks: 
+felix-pb (Creator of KFD) 
+
+wh1te4ever (major core utils developer for KFD which posi0nKFD depends on) 
+
+
+
+
+# KFD
 
 kfd, short for kernel file descriptor, is a project to read and write kernel memory on Apple
 devices. It leverages various vulnerabilities that can be exploited to obtain dangling PTEs, which

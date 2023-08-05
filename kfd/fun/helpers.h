@@ -10,6 +10,7 @@ void xpc_crasher(char* service_name);
 void restartBackboard(void);
 void restartFrontboard(void);
 
+
 #define ROUND_DOWN_PAGE(val) (val & ~(PAGE_SIZE - 1ULL))
 
 #endif /* helpers_h */

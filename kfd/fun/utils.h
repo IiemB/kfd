@@ -7,9 +7,4 @@
 
 #include <stdio.h>
 int ResSet16(void);
-int removeSMSCache(void);
-int VarMobileWriteTest(void);
-int VarMobileRemoveTest(void);
-int gibmebar(void);
-int gibmebarplist(void);
 int clearUICache(void);

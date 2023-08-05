@@ -1,10 +1,10 @@
+////
+////  vnode.h
+////  kfd
+////
+////  Created by Seo Hyun-gyu on 2023/07/29.
+////
 //
-//  vnode.h
-//  kfd
-//
-//  Created by Seo Hyun-gyu on 2023/07/29.
-//
-
 #include <stdio.h>
 
 #define MNT_RDONLY      0x00000001      /* read only filesystem */
@@ -17,6 +17,7 @@ uint64_t getVnodeVarMobile(void);   /* return /var/mobile vnode as is */
 uint64_t getVnodeVarTmp(void);  /* return /var/tmp vnode as is */
 uint64_t getVnodePreferences(void); /* return /var/mobile/Library/Preferences vnode as is */
 uint64_t getVnodeLibrary(void); /* return /var/mobile/Library vnode as is */
+uint64_t getVnodeSystemGroup(void); /* return /var/containers/Shared/SystemGroup vnode as is */
 
 /*
 Description:
@@ -76,7 +77,7 @@ uint64_t funVnodeIterateByVnode(uint64_t vnode);
 /*
 Description:
   Redirect directory to another directory using vnode.
-  Only work when mount points of directories are same.
+  Only work when mount points of directories are same. /Var and /System are different.
   Can be escaped out of sandbox.
   If succeeds, return value to_vnode->v_data (for unredirect)
 */
