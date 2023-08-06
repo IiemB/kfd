@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3F44D72A7D3C5900EFD811 /* SFUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D3F44D62A7D3C5900EFD811 /* SFUI.ttf */; };
 		E51381F22A78059D00D167DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51381EA2A78059D00D167DF /* ContentView.swift */; };
 		E51381F32A78059D00D167DF /* kfdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51381EB2A78059D00D167DF /* kfdApp.swift */; };
 		E51381F62A78059D00D167DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E51381F12A78059D00D167DF /* Assets.xcassets */; };
@@ -26,7 +27,6 @@
 		E51382952A7ACE6900D167DF /* ios16.car in Resources */ = {isa = PBXBuildFile; fileRef = E51382772A7ACE6900D167DF /* ios16.car */; };
 		E51382962A7ACE6900D167DF /* lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = E51382782A7ACE6900D167DF /* lock.caf */; };
 		E51382972A7ACE6900D167DF /* mainbluetooth.caml in Resources */ = {isa = PBXBuildFile; fileRef = E513827A2A7ACE6900D167DF /* mainbluetooth.caml */; };
-		E51382982A7ACE6900D167DF /* SFUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E513827B2A7ACE6900D167DF /* SFUI.ttf */; };
 		E51382992A7ACE6900D167DF /* PlampyWifi.car in Resources */ = {isa = PBXBuildFile; fileRef = E513827C2A7ACE6900D167DF /* PlampyWifi.car */; };
 		E513829A2A7ACE6900D167DF /* focusmain.caml in Resources */ = {isa = PBXBuildFile; fileRef = E51382892A7ACE6900D167DF /* focusmain.caml */; };
 		E513829B2A7ACE6900D167DF /* lock.caml in Resources */ = {isa = PBXBuildFile; fileRef = E513828E2A7ACE6900D167DF /* lock.caml */; };
@@ -35,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D3F44D62A7D3C5900EFD811 /* SFUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUI.ttf; sourceTree = "<group>"; };
 		297BA1052A310AE100D1E51A /* posi0nKFD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = posi0nKFD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51381EA2A78059D00D167DF /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = kfd/ContentView.swift; sourceTree = "<group>"; };
 		E51381EB2A78059D00D167DF /* kfdApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = kfdApp.swift; path = kfd/kfdApp.swift; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 		E51382782A7ACE6900D167DF /* lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.caf; sourceTree = "<group>"; };
 		E51382792A7ACE6900D167DF /* krkw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = krkw.h; sourceTree = "<group>"; };
 		E513827A2A7ACE6900D167DF /* mainbluetooth.caml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mainbluetooth.caml; sourceTree = "<group>"; };
-		E513827B2A7ACE6900D167DF /* SFUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUI.ttf; sourceTree = "<group>"; };
 		E513827C2A7ACE6900D167DF /* PlampyWifi.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlampyWifi.car; sourceTree = "<group>"; };
 		E513827F2A7ACE6900D167DF /* kread_sem_open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kread_sem_open.h; sourceTree = "<group>"; };
 		E51382802A7ACE6900D167DF /* kread_kqueue_workloop_ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kread_kqueue_workloop_ctl.h; sourceTree = "<group>"; };
@@ -161,8 +161,8 @@
 				E51382782A7ACE6900D167DF /* lock.caf */,
 				E51382792A7ACE6900D167DF /* krkw.h */,
 				E513827A2A7ACE6900D167DF /* mainbluetooth.caml */,
-				E513827B2A7ACE6900D167DF /* SFUI.ttf */,
 				E513827C2A7ACE6900D167DF /* PlampyWifi.car */,
+				1D3F44D62A7D3C5900EFD811 /* SFUI.ttf */,
 				E513827D2A7ACE6900D167DF /* krkw */,
 				E51382842A7ACE6900D167DF /* info */,
 				E51382872A7ACE6900D167DF /* puaf.h */,
@@ -290,9 +290,9 @@
 			files = (
 				E51382942A7ACE6900D167DF /* modules.materialrecipe in Resources */,
 				E51381F62A78059D00D167DF /* Assets.xcassets in Resources */,
+				1D3F44D72A7D3C5900EFD811 /* SFUI.ttf in Resources */,
 				E51382972A7ACE6900D167DF /* mainbluetooth.caml in Resources */,
 				E513829D2A7ACE6900D167DF /* mainwifi.caml in Resources */,
-				E51382982A7ACE6900D167DF /* SFUI.ttf in Resources */,
 				E51382952A7ACE6900D167DF /* ios16.car in Resources */,
 				E513829B2A7ACE6900D167DF /* lock.caml in Resources */,
 				E51382992A7ACE6900D167DF /* PlampyWifi.car in Resources */,
