@@ -35,6 +35,9 @@
 		C8EAC7D02A769098005FB878 /* SwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = C8843C222A724AA900CA0DC9 /* SwiftUtils */; };
 		C8EAC7D22A7690E2005FB878 /* vnode.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EAC7D12A7690E2005FB878 /* vnode.m */; };
 		C8EAC7D52A769100005FB878 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EAC7D42A769100005FB878 /* utils.m */; };
+		E51382AB2A7EC74400D167DF /* repos.json in Resources */ = {isa = PBXBuildFile; fileRef = E51382AA2A7EC74400D167DF /* repos.json */; };
+		E51382AD2A7ECB1F00D167DF /* Sources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51382AC2A7ECB1F00D167DF /* Sources.swift */; };
+		E51382AF2A7ED15100D167DF /* packages.json in Resources */ = {isa = PBXBuildFile; fileRef = E51382AE2A7ED15100D167DF /* packages.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,9 @@
 		C8EAC7D12A7690E2005FB878 /* vnode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vnode.m; sourceTree = "<group>"; };
 		C8EAC7D32A769100005FB878 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C8EAC7D42A769100005FB878 /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		E51382AA2A7EC74400D167DF /* repos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = repos.json; sourceTree = "<group>"; };
+		E51382AC2A7ECB1F00D167DF /* Sources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources.swift; sourceTree = "<group>"; };
+		E51382AE2A7ED15100D167DF /* packages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = packages.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 				C893D20C2A7C16E500643CCC /* mainforwardbackward.caml */,
 				C893D1FB2A7BB82500643CCC /* mainvolume.caml */,
 				C893D1FC2A7BB82500643CCC /* mainbluetooth.caml */,
+				E51382AA2A7EC74400D167DF /* repos.json */,
 				C893D1FD2A7BB82500643CCC /* PlampyWifi.car */,
 				C893D1FE2A7BB82500643CCC /* focusmain.caml */,
 				C893D2002A7BB82500643CCC /* mainbrightness.caml */,
@@ -164,6 +171,7 @@
 				29A765292A393FCB006617E8 /* perf.h */,
 				2948BA6D2A3162E900B2ED3C /* puaf */,
 				2948BA712A31631C00B2ED3C /* puaf.h */,
+				E51382AE2A7ED15100D167DF /* packages.json */,
 			);
 			path = libkfd;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 			children = (
 				297BA10C2A310AE200D1E51A /* Assets.xcassets */,
 				297BA10A2A310AE100D1E51A /* ContentView.swift */,
+				E51382AC2A7ECB1F00D167DF /* Sources.swift */,
 				2965065D2A31565B0025D1A7 /* kfd-Bridging-Header.h */,
 				297BA10E2A310AE200D1E51A /* kfd.entitlements */,
 				297BA1082A310AE100D1E51A /* kfdApp.swift */,
@@ -311,6 +320,7 @@
 			files = (
 				C8C43BF82A797848008B08F9 /* lock.caf in Resources */,
 				297BA1112A310AE200D1E51A /* Preview Assets.xcassets in Resources */,
+				E51382AF2A7ED15100D167DF /* packages.json in Resources */,
 				C86E3CB82A7CFFF5004A1B56 /* modules.materialrecipe in Resources */,
 				C893D2022A7BB82500643CCC /* SFUI.ttf in Resources */,
 				C893D2112A7C2FB200643CCC /* mainplaypausestop.caml in Resources */,
@@ -322,6 +332,7 @@
 				C893D2062A7BB82500643CCC /* mainbluetooth.caml in Resources */,
 				C893D2052A7BB82500643CCC /* mainvolume.caml in Resources */,
 				C86E3CB92A7CFFF5004A1B56 /* modulesBackground.materialrecipe in Resources */,
+				E51382AB2A7EC74400D167DF /* repos.json in Resources */,
 				C893D2032A7BB82500643CCC /* ios16.car in Resources */,
 				C8C194812A759CC700ABE8BF /* AAAA.bin in Resources */,
 				C893D20B2A7BB82500643CCC /* mainwifi.caml in Resources */,
@@ -335,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51382AD2A7ECB1F00D167DF /* Sources.swift in Sources */,
 				212762C02A7574040070E6A5 /* grant_full_disk_access.m in Sources */,
 				212762BF2A7574040070E6A5 /* fun.m in Sources */,
 				C8EAC7D52A769100005FB878 /* utils.m in Sources */,
@@ -485,6 +497,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -493,7 +506,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kfd.personal;
 				PRODUCT_NAME = posi0nKFD;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "kfd/kfd-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -526,6 +541,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -534,7 +550,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kfd.personal;
 				PRODUCT_NAME = posi0nKFD;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "kfd/kfd-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

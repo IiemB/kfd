@@ -228,8 +228,7 @@ NSDictionary *changeDictValue(NSDictionary *dictionary, NSString *key, id value)
 }
 
 
-void do_fun(char** enabledTweaks, int numTweaks) {
-    
+void do_fun(char** enabledTweaks, char** secondaryValues, int numTweaks) {
     _offsets_init();
     
     uint64_t kslide = get_kslide();
@@ -254,6 +253,7 @@ void do_fun(char** enabledTweaks, int numTweaks) {
     
     for (int i = 0; i < numTweaks; i++) {
         char *tweak = enabledTweaks[i];
+        char *secondaryValue = secondaryValues[i];
         if (strcmp(tweak, "HideDock") == 0) {
             funVnodeHide("/System/Library/PrivateFrameworks/CoreMaterial.framework/dockDark.materialrecipe");
             funVnodeHide("/System/Library/PrivateFrameworks/CoreMaterial.framework/dockLight.materialrecipe");
@@ -274,8 +274,12 @@ void do_fun(char** enabledTweaks, int numTweaks) {
             funVnodeOverwrite2("/System/Library/PrivateFrameworks/MediaControls.framework/ForwardBackward.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/mainforwardbackward.caml"].UTF8String);
             funVnodeOverwrite2("/System/Library/PrivateFrameworks/MediaControls.framework/PlayPauseStop.ca/main.caml", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/mainplaypausestop.caml"].UTF8String);
         }
+        
         if (strcmp(tweak, "enableCustomFont") == 0) {
-            funVnodeOverwrite2("/System/Library/Fonts/CoreUI/SFUI.ttf", [NSString stringWithFormat:@"%@%@", NSBundle.mainBundle.bundlePath, @"/SFUI.ttf"].UTF8String);
+            if (secondaryValues != NULL) {
+                      funVnodeOverwrite2("/System/Library/Fonts/CoreUI/SFUI.ttf", [NSString stringWithFormat:@"%s", secondaryValue].UTF8String);
+                
+            }
         }
         if (strcmp(tweak, "mutecam") == 0) {
             funVnodeHide("/System/Library/Audio/UISounds/photoShutter.caf");
